@@ -1,0 +1,9 @@
+1) copy data from csv file (sample iris.csv)
+2) remove null rows (df.dropna)
+3) fill with mean value (df.fillna)
+4) create dataframe from list,array,dict	
+5) change column name, add new col
+6) take ipl data, groupby, fileter
+7) take 2 df's and join in diff examples 
+8) Plot this ipl data with : line, bar, hist, ...
+9) use map & lamda function

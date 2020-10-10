@@ -1,0 +1,67 @@
+import pandas as pd 
+
+users = pd.read_table('C:/Users/lenovo/Desktop/emp_details.txt',sep='|',index_col ='user_id')
+users.head(25)					  
+users.tail(10)
+
+--> number of observations
+print(users.shape) 
+
+--> number of columns.
+print(users.shape[1])
+
+--> print name of columns 
+print(users.columns)
+
+--> data type of columns 
+print(users.dtypes)
+
+--> print only occupation
+print(users.occupation)
+
+-->most frequent occupation
+users.occupation.value_counts().head()
+
+--> For unique occupations 
+a = users.occupation.unique()
+
+--> print(users.describe())
+
+--> summarize only occupation.
+
+users.occupation.describe()
+
+--> means of users age 
+round(users.age.mean())
+
+---> indexing and slicing 
+import pandas as pd
+users = pd.read_table('C:/..../emp_details.txt',sep='|',index_col='user_id')
+print(users.head(10))
+users.iloc[1:7,1:]
+
+--> age greater than 50 
+
+users[users['age']>50]
+
+--> group by with count 
+
+import pandas as pd
+users = pd.read_table('C:/Users/lenovo/Desktop/emp_details.txt',sep='|',index_col ='user_id')
+users.groupby('occupation').size()
+
+--> usage of apply method
+
+import pandas as pd
+users = pd.read_table('C:/Users/lenovo/Desktop/emp_details.txt',sep='|',index_col ='user_id')
+capitalizer = lambda x: x.upper()
+
+print(users['occupation'].apply(capitalizer))
+
+--> 
+import pandas as pd
+users = pd.read_table('C:/Users/lenovo/Desktop/emp_details.txt',sep='|',index_col ='user_id')
+
+gender = lambda x:'male' if x == 'M' else 'female'
+
+print(users['gender'].apply(gender))

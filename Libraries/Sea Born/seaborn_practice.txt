@@ -1,0 +1,45 @@
+
+If matplotlib “tries to make easy things easy and hard things possible”, seaborn tries to make a well-defined set of hard things easy too.
+
+
+
+Import libraries and dataset:
+--------------------------------
+import pandas as pd
+from matplotlib import pyplot as plt
+%matplotlib inline
+import seaborn as sns
+df = pd.read_csv('pokemon.csv', index_col=0)
+
+Scatterplot:
+---------------
+
+sns.lmplot(x='Attack', y='Defense', data=df)
+
+Adjusting Axes Limits:
+---------------------
+
+sns.lmplot(x='Attack', y='Defense', data=df)
+plt.ylim(0, None)
+plt.xlim(0, None)
+
+Preprocess w/ Pandas + Boxplot:
+-------------------------------
+stats_df = df.drop([‘Total', ‘Stage', ‘Legendary'], axis=1)
+sns.boxplot(data=stats_df)
+
+Set Theme + Violinplot:
+------------------------
+
+sns.set_style(‘whitegrid')
+sns.violinplot(x='Type 1', y='Attack', data=df)
+
+Set Custom Color Palette:
+-----------------------
+pkmn_type_colors = [‘#78C850', ‘#F08030', ‘#6890F0', ‘#A8B820',
+ ‘#A8A878', ‘#A040A0', ‘#F8D030', ‘#E0C068'
+ ‘#EE99AC', ‘#C03028', ‘#F85888', ‘#B8A038',
+ ‘#705898', ‘#98D8D8', ‘#7038F8']
+sns.violinplot(x='Type 1', y='Attack', data=df,
+ palette=pkmn_type_colors)
+ 

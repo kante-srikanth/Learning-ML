@@ -1,0 +1,235 @@
+<html>
+
+<head>
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <script>
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+  </script>
+  <style>
+    .zc-ref {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id='myChart'><a class="zc-ref" href="https://www.zingchart.com/">Charts by ZingChart</a></div>
+  <form id="frm1">
+  Parameter-1: <input type="number" name="p1" value=""><br>
+  Parameter-2: <input type="number" name="p2" value=""><br>
+  Parameter-3: <input type="number" name="p3" value=""><br>
+  Parameter-4: <input type="number" name="p4" value=""><br>
+  Parameter-5: <input type="number" name="p5" value=""><br>
+  Parameter-6: <input type="number" name="p6" value=""><br>
+  </form>
+<button onclick="myFunction()">SUBMIT</button>
+<script>
+function myFunction(){
+  debugger;
+  var x = document.getElementById("frm1");
+  valueArray = {
+  va1 : parseInt(x.p1.value),
+  va2 : parseInt(x.p2.value),
+  va3 : parseInt(x.p3.value),
+  va4 : parseInt(x.p4.value),
+  va5 : parseInt(x.p5.value),
+  va6 : parseInt(x.p6.value)
+  }
+}
+
+var seriesObj1={
+    values:Object.values(valueArray)
+};
+  zingchart.THEME = "classic";
+  var myConfig = {
+    "graphset": [{
+      "type": "gauge",
+      "background-color": "#fff #eee",
+      "plot": {
+        "background-color": "#666"
+      },
+      "plotarea": {
+        "margin": "0 0 0 0"
+      },
+      "scale": {
+        "size-factor": 0.85,
+        "offset-y": 120
+      },
+      "tooltip": {
+        "background-color": "black"
+      },
+      "scale-r": {
+        "values": "0:4:1.33",
+        "border-color": "#b3b3b3",
+        "border-width": "2",
+        "background-color": "#eeeeee,#b3b3b3",
+        "ring": {
+          "size": 90,
+          "offset-r": "130px",
+          "rules": [{
+            "rule": "%v >=0 && %v < 1.33",
+            "background-color": "#FB0A02"
+          },
+	/*	{
+            "rule": "%v >= 1.5 && %v < 2",
+            "background-color": "#EC7928"
+          },
+	*/	{
+            "rule": "%v >= 1.33 && %v < 2.66",
+            "background-color": "#FAC100"
+          },
+	/*	{
+            "rule": "%v >= 3 && %v < 3.2",
+            "background-color": "#B1AD00"
+          },
+	*/	{
+            "rule": "%v >= 2.66",
+            "background-color": "#348D00"
+          }]
+        },
+	  "labels":["","RED","AMBER","GREEN"],
+	  "item":{    //Scale Label Styling
+		  "font-color":"purple",
+		  "font-family":"Calibri",
+		  "font-size":12,
+		  "font-weight":"bold",     //or "normal"
+		  "font-style":"normal",    //or "italic"
+		  "offset-r": -5,    //To adjust the placement of your scale labels.
+		  "angle":"auto"    //To adjust the angle of your scale labels.
+		}
+      },
+      "images": [
+        // {
+        //     "src":"gaugle_scale_mini.png",
+        //     "position":"50% 80%"
+        // }
+      ],
+      "labels": [{
+        "id": "lbl1",
+        "x": "50%",
+        "y": "85%",
+        "width": 80,
+        "offsetX": 160,
+        "textAlign": "center",
+        "padding": 10,
+        "anchor": "c",
+        "text": "GREEN",
+        "backgroundColor": "#348D00",
+        "tooltip": {
+          "padding": 10,
+          "backgroundColor": "#237b00",
+          "text": "ReadyToShip",
+          "shadow": 0
+        }
+      }, {
+        "id": "lbl2",
+        "x": "50%",
+        "y": "85%",
+        "width": 80,
+        "offsetX": 80,
+        "textAlign": "center",
+        "padding": 10,
+        "anchor": "c",
+        "text": "READY",
+        "backgroundColor": "#B1AD00",
+        "tooltip": {
+          "padding": 10,
+          "backgroundColor": "#a09c00",
+          "text": "ReadyToShare",
+          "shadow": 0
+        }
+      }, {
+        "id": "lbl3",
+        "x": "50%",
+        "y": "85%",
+        "width": 80,
+        "offsetX": 0,
+        "textAlign": "center",
+        "padding": 10,
+        "anchor": "c",
+        "text": "PENDING",
+        "backgroundColor": "#FAC100",
+        "tooltip": {
+          "padding": 10,
+          "backgroundColor": "#e9b000",
+          "text": "Hold",
+          "shadow": 0
+        }
+      }, {
+        "id": "lbl4",
+        "x": "50%",
+        "y": "85%",
+        "width": 80,
+        "offsetX": -80,
+        "textAlign": "center",
+        "padding": 10,
+        "anchor": "c",
+        "text": "ADOPT",
+        "backgroundColor": "#EC7928",
+        "tooltip": {
+          "padding": 10,
+          "backgroundColor": "#da6817",
+          "text": "Ignore",
+          "shadow": 0
+        }
+      }, {
+        "id": "lbl5",
+        "x": "50%",
+        "y": "85%",
+        "width": 80,
+        "offsetX": -160,
+        "textAlign": "center",
+        "padding": 10,
+        "anchor": "c",
+        "text": "RED",
+        "backgroundColor": "#FB0A02",
+        "tooltip": {
+          "padding": 10,
+          "backgroundColor": "#ea0901",
+          "text": "Blocked",
+          "shadow": 0
+        }
+      }],
+      "series": [seriesObj1],
+      "alpha": 1
+    }]
+  };
+
+  zingchart.render({
+    id: 'myChart',
+    data: myConfig,
+  });
+  </script>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function() {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					head.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					head.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function(msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			console.log('Live reload enabled.');
+		})();
+	}
+	// ]]>
+</script>
+</body>
+</html>

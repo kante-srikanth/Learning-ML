@@ -1,0 +1,19 @@
+train:
+  # Run name for the training session.
+  run_name: traffic
+  job_dir: ./sampleDemo
+  learning_rate:
+    decay_method: piecewise_constant
+    # Custom dataset for Luminoth Tutorial
+    boundaries: [90000, 160000, 250000]
+    values: [0.0003, 0.0001, 0.00003, 0.00001]
+dataset:
+  type: object_detection
+  dir: ./out
+model:
+  type: fasterrcnn
+  network:
+    num_classes: 8
+  anchors:
+    # Add one more scale to be better at detecting small objects
+    scales: [0.125, 0.25, 0.5, 1, 2]

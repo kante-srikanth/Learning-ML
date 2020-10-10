@@ -1,0 +1,1 @@
+{"file": "Df-75iwW0AEtsps.jpg", "objects": [{"bbox": [255, 42, 606, 580], "label": "person", "prob": 0.9998}, {"bbox": [603, 112, 961, 580], "label": "person", "prob": 0.9996}, {"bbox": [339, 255, 434, 574], "label": "tie", "prob": 0.7963}]}

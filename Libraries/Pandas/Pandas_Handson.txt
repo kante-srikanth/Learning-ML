@@ -1,0 +1,308 @@
+
+Jupyter Notebook:
+----------------
+The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. 
+Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+
+INTRODUCTION TO PANDAS: 
+----------------------
+Pandas is an open-source Python Library providing high-performance data manipulation
+and analysis tool using its powerful data structures. The name Pandas is derived from the
+word Panel Data – an Econometrics from Multidimensional data.
+In 2008, developer Wes McKinney started developing pandas when in need of high
+performance, flexible tool for analysis of data.
+
+Prior to Pandas, Python was majorly used for data munging and preparation. It had very
+less contribution towards data analysis. Pandas solved this problem. Using Pandas, we can
+accomplish five typical steps in the processing and analysis of data, regardless of the origin
+of data — load, prepare, manipulate, model, and analyze.
+
+Python with Pandas is used in a wide range of fields including academic and commercial
+domains including finance, economics, Statistics, analytics, etc.
+Key Features of Pandas
+
+***  Creating data sets - Creating data frames - Reading from CSV - Exporting to CSV - Finding maximums - Plotting data
+***  Reading from TXT - Exporting to TXT - Selecting top/bottom records - Descriptive statistics - Grouping/sorting data
+***  Creating functions - Reading from EXCEL - Exporting to EXCEL - Outliers - Lambda functions - Slice and dice data
+***  Adding/deleting columns - Index operations
+***  Stack/Unstack/Transpose functions
+***  GroupBy function
+***  Ways to calculate outliers
+***  Read from Microsoft SQL databases
+***  Export to CSV/EXCEL/TXT
+***  Converting between different kinds of formats
+***  Combining data from various sources
+
+
+Pandas deals with the following three data structures:
+* Series
+* DataFrame
+* Panel
+
+	These data structures are built on top of Numpy array, which means they are fast.
+Dimension & Description. The best way to think of these data structures are that the higher dimensional 
+data structure is a container of its lower dimensional data structure. 
+
+For example, DataFrame is a
+container of Series, Panel is a container of DataFrame.
+
+Data Structure Dimensions Description
+Series ---- 1   --1D labeled homogeneous array, sizeimmutable.
+Data Frames  --- 2 ---- General 2D labeled, size-mutable tabular
+						structure with potentially heterogeneously typed columns.
+Panel ---3 -----General 3D labeled, size-mutable array.
+
+Building and handling two or more dimensional arrays is a tedious task, burden is placed
+on the user to consider the orientation of the data set when writing functions. But using
+Pandas data structures, the mental effort of the user is reduced.
+
+For example, with tabular data (DataFrame) it is more semantically helpful to think of
+the index (the rows) and the columns rather than axis 0 and axis 1.
+
+Mutability
+All Pandas data structures are value mutable (can be changed) and except Series all are
+size mutable. Series is size immutable.
+Note: DataFrame is widely used and one of the most important data structures. Panel is
+very less used.
+
+Series : 
+---------
+Series is a one-dimensional array like structure with homogeneous data. For example, the
+following series is a collection of integers 
+
+10 23 56 17 52 61 73 90 26 72
+
+Key Points
+* Homogeneous data
+* Size Immutable
+* Values of Data Mutable
+
+DataFrame:
+----------
+
+DataFrame is a two-dimensional array with heterogeneous data. For example,
+
+Name Age Gender Rating
+Steve 32 Male 3.45
+Lia 28 Female 4.6
+Vin 45 Male 3.9
+Katie 38 Female 2.78
+
+
+The table represents the data of a sales team of an organization with their overall
+performance rating. The data is represented in rows and columns. Each column represents
+an attribute and each row represents a person.
+Data Type of Columns
+
+The data types of the four columns are as follows:
+Column Type
+Name String
+Age Integer
+Gender String
+Rating Float
+Python Pandas
+
+
+Key Points
+* Heterogeneous data
+* Size Mutable
+* Data Mutable
+
+
+Panel : 
+--------
+Panel is a three-dimensional data structure with heterogeneous data. It is hard to
+represent the panel in graphical representation. But a panel can be illustrated as a
+container of DataFrame.
+Key Points
+* Heterogeneous data
+* Size Mutable
+* Data Mutable
+
+
+Series:
+-------
+
+#import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+data = np.array(['a','b','c','d'])
+s = pd.Series(data)
+print(s)
+
+output :
+--------
+0 a
+1 b
+2 c
+3 d
+dtype: object
+
+
+#import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+data = np.array(['a','b','c','d'])
+s= pd.Series(data,index=[100,101,102,103])
+print(s)
+
+Its output is as
+
+100 a
+101 b
+102 c
+103 d
+dtype: object
+
+
+Retrieve elements 
+
+import pandas as pd
+s=pd.Series([1,2,3,4,5],index=['a','b','c','d','e'])
+#retrieve multiple elements
+print(s[['a','c','d']])
+
+pandas Data frame  :
+-------------------
+
+A Data frame is a two-dimensional data structure, i.e., data is aligned in a tabular fashion
+in rows and columns.
+Features of DataFrame
+* Potentially columns are of different types
+* Size – Mutable
+* Labeled axes (rows and columns)
+* Can Perform Arithmetic operations on rows and columns
+
+pandas.DataFrame( data, index, columns, dtype, copy)
+
+1.data: data takes various forms like ndarray, series, map, lists, dict, constants and
+also another DataFrame.
+
+2.index:For the row labels, the Index to be used for the resulting frame is Optional
+Default np.arrange(n) if no index is passed.
+
+3.columns:For column labels, the optional default syntax is - np.arrange(n). This is only
+true if no index is passed.
+
+4.dtype: Data type of each column.
+
+5.copy:This command (or whatever it is) is used for copying of data, if the default is
+False.
+
+A pandas DataFrame can be created using various inputs like:
+ Lists
+ dict
+ Series
+ Numpy ndarrays
+ Another DataFrame
+
+
+Data Frame from list: 
+------------------
+import pandas as pd
+data = [1,2,3,4,5]
+df = pd.DataFrame(data)
+print(df)
+
+   0
+0  1
+1  2
+2  3
+3  4
+4  5
+
+
+import pandas as pd
+data = [['Alex',10],['Bob',12],['Clarke',13]]
+df = pd.DataFrame(data,columns=['Name','Age'],dtype=float)
+print(df)
+
+     Name   Age
+0    Alex  10.0
+1     Bob  12.0
+2  Clarke  13.0
+
+
+from dictionary:
+
+import pandas as pd
+data = {'Name':['Tom', 'Jack', 'Steve', 'Ricky'],
+'Age':[28,34,29,42]}
+df = pd.DataFrame(data, index=['rank1','rank2','rank3','rank4'])
+print df
+
+
+usage of group by :
+
+# import the pandas library
+import pandas as pd
+ipl_data = {'Team': ['Riders', 'Riders', 'Devils', 'Devils', 'Kings',
+'kings', 'Kings', 'Kings', 'Riders', 'Royals', 'Royals', 'Riders'],
+'Rank': [1, 2, 2, 3, 3,4 ,1 ,1,2 , 4,1,2],
+'Year': [2014,2015,2014,2015,2014,2015,2016,2017,2016,2014,2015,2017],
+'Points':[876,789,863,673,741,812,756,788,694,701,804,690]}
+df = pd.DataFrame(ipl_data)
+print(df)
+k = df.groupby('Team')
+for i in k:
+    print(i)
+	
+Data visualization with Plot:
+-----------------------------
+df.plot(x='Team',y='Year',kind='hist')
+
+Pandas merging:
+-------------
+
+# import the pandas library
+import pandas as pd
+df1 = pd.DataFrame({
+'id':[1,2,3,4,5],
+'Name': ['Alex', 'Amy', 'Allen', 'Alice', 'Ayoung'],
+'subject_id':['sub1','sub2','sub4','sub6','sub5']})
+df2 = pd.DataFrame(
+{'id':[1,2,3,4,5],
+'Name': ['Billy', 'Brian', 'Bran', 'Bryce', 'Betty'],
+'subject_id':['sub2','sub4','sub3','sub6','sub5']})
+
+print(df1)
+print(df2)
+
+print(pd.merge(df1,df2,on=['id','subject_id']))
+
+----------------------------
+Merge using 'how'
+
+MergeMethod 	SQL Equivalent		 Description
+left 			LEFT OUTER JOIN 	Use keys from left object
+right 			RIGHT OUTER JOIN 	Use keys from right object
+outer 			FULL OUTER JOIN 	Use union of keys
+inner 			INNER JOIN 			Use intersection of keys
+
+print(pd.merge(df1, df2, on='subject_id', how='left'))
+print(pd.merge(df1, df2, on='subject_id', how='inner'))
+
+
+Map:
+-----
+df = pd.DataFrame({'num':[1,2,3,4,5,6,7]})
+df
+df['num'].map(lambda x : 10+x)
+
+dfm = pd.DataFrame({'Team': ['Riders', 'Riders', 'Devils', 'Devils', 'Kings',
+'kings', 'Kings', 'Kings', 'Riders', 'Royals', 'Royals', 'Riders']})
+dfm['Team'].map(lambda x: x+' team')
+
+--------------------------------------------
+Create Data:
+------------
+# The initial set of baby names and birth rates
+names = ['Bob','Jessica','Mary','John','Mel']
+births = [968, 155, 77, 578, 973]
+To merge these two lists together we will use the zip function.
+
+zip?
+BabyDataSet = list(zip(names,births))
+BabyDataSet
+[('Bob', 968), ('Jessica', 155), ('Mary', 77), ('John', 578), ('Mel', 973)]
+
